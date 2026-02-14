@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Valentines Day Emma ❤️</title>
+  <meta name="description" content="A little Valentine’s Day website, made with love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0b10;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --soft: rgba(255,255,255,.16);
+      --accent: #ff4d7d;
+      --accent2: #ffb3c7;
+      --shadow: 0 20px 70px rgba(0,0,0,.55);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(255,77,125,.22), transparent 55%),
+        radial-gradient(900px 500px at 90% 15%, rgba(255,179,199,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(114,33,255,.12), transparent 55%),
+        linear-gradient(180deg, #0c0710 0%, #0f0b10 40%, #07050a 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+
+    /* floating hearts */
+    .hearts {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+      opacity: .35;
+    }
+    .heart {
+      position: absolute;
+      width: 14px; height: 14px;
+      transform: rotate(45deg);
+      background: linear-gradient(135deg, rgba(255,77,125,.95), rgba(255,179,199,.95));
+      border-radius: 3px;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.4));
+      animation: floatUp var(--dur) linear infinite;
+      left: var(--left);
+      bottom: -30px;
+      opacity: var(--op);
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 14px; height: 14px;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .heart::before { left: -7px; top: 0; }
+    .heart::after  { left: 0; top: -7px; }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(45deg) scale(var(--s)); }
+      100% { transform: translateY(-120vh) rotate(45deg) scale(var(--s)); }
+    }
+
+    /* hero */
+    header {
+      position: relative;
+      z-index: 1;
+      min-height: 92vh;
+      display: grid;
+      place-items: center;
+      padding: 34px 0 24px;
+    }
+
+    .hero {
+      position: relative;
+      width: min(1100px, 92vw);
+      border-radius: calc(var(--radius) + 10px);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .heroBg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,6,14,.45), rgba(10,6,14,.85)),
+        url("assets/photo_02.jpg") center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .heroInner {
+      position: relative;
+      padding: clamp(22px, 4vw, 52px);
+      display: grid;
+      gap: 22px;
+    }
+    .pill {
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(8px);
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: .2px;
+      font-size: 13px;
+    }
+    h1 {
+      margin: 0;
+      font-family: Fraunces, ui-serif, Georgia, serif;
+      font-weight: 700;
+      letter-spacing: .2px;
+      line-height: 1.02;
+      font-size: clamp(36px, 5.5vw, 66px);
+      text-wrap: balance;
+    }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2.0vw, 18px);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
+    .ctaRow {
+      display: flex; flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      padding-top: 6px;
+    }
+    .btn {
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: .2px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(255,77,125,1), rgba(255,179,199,1));
+      color: #1b0a12;
+      box-shadow: 0 14px 35px rgba(255,77,125,.22);
+      text-decoration: none;
+    }
+    .btn.secondary {
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: none;
+      backdrop-filter: blur(10px);
+    }
+    .tiny {
+      font-size: 12px;
+      color: rgba(255,255,255,.58);
+    }
+
+    main { position: relative; z-index: 1; padding: 24px 0 70px; }
+    section { padding: 54px 0; }
+    .sectionTitle {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      margin-bottom: 18px;
+    }
+    h2 {
+      margin: 0;
+      font-family: Fraunces, ui-serif, Georgia, serif;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: .2px;
+    }
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 52ch;
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .grid3 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: .2px;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* timeline */
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .moment {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    @media (max-width: 700px) {
+      .moment { grid-template-columns: 1fr; }
+    }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      width: fit-content;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,77,125,.15);
+      border: 1px solid rgba(255,77,125,.28);
+      color: rgba(255,255,255,.88);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .25px;
+    }
+    .moment h4 { margin: 8px 0 6px; font-size: 16px; }
+    .moment p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
+
+    /* gallery */
+    .masonry {
+      columns: 3 250px;
+      column-gap: 14px;
+    }
+    .shot {
+      break-inside: avoid;
+      margin-bottom: 14px;
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      cursor: zoom-in;
+    }
+    .shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.01);
+      transition: transform .25s ease, filter .25s ease;
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .shot:hover img {
+      transform: scale(1.04);
+      filter: saturate(1.08) contrast(1.06);
+    }
+    .shot .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.55));
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .shot:hover .overlay { opacity: 1; }
+    .shot .cap {
+      position: absolute;
+      left: 12px; right: 12px; bottom: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.85);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .shot:hover .cap { opacity: 1; transform: translateY(0); }
+
+    /* lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      z-index: 50;
+    }
+    .lightbox.open { display: grid; }
+    .lightboxInner {
+      width: min(980px, 96vw);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(15,11,16,.85);
+      box-shadow: var(--shadow);
+    }
+    .lbTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+      gap: 10px;
+    }
+    .lbBtns { display: flex; gap: 8px; align-items: center; }
+    .iconBtn {
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .lbImgWrap {
+      background: rgba(0,0,0,.18);
+    }
+    .lbImg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* letter */
+    .letter {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .letter { grid-template-columns: 1fr; }
+    }
+    .note {
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .note p {
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.78);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    .note p:last-child { margin-bottom: 0; }
+    .sig {
+      margin-top: 12px;
+      font-family: Fraunces, ui-serif, Georgia, serif;
+      font-size: 22px;
+      color: rgba(255,179,199,.95);
+    }
+    .miniGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mini {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .mini img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    @media (max-width: 600px) {
+      .miniGrid { grid-template-columns: 1fr; }
+      .mini img { height: 240px; }
+    }
+
+    /* surprise */
+    .surprise {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    input[type="text"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--text);
+      outline: none;
+    }
+    input::placeholder { color: rgba(255,255,255,.45); }
+    .msg {
+      display: none;
+      padding: 14px 14px;
+      border-radius: 16px;
+      background: rgba(255,77,125,.14);
+      border: 1px solid rgba(255,77,125,.26);
+      color: rgba(255,255,255,.9);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .msg.show { display: block; }
+    footer {
+      padding: 44px 0 60px;
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .footerCard {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.78);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <header>
+    <div class="hero">
+      <div class="heroBg" role="img" aria-label="A photo collage of you two"></div>
+      <div class="heroInner">
+        <div class="pill">Valentine’s Day • made with love</div>
+        <h1>Happy Valentines Day Emma ❤️</h1>
+<div class="ctaRow">
+          <a class="btn" href="#letter">Open your letter</a>
+          <a class="btn secondary" href="#gallery">Photo gallery</a>
+          <span class="tiny">Tip: press <span class="kbd">P</span> to open the gallery lightbox.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+
+    
+
+    
+    <section id="note">
+      <div class="container">
+        <div class="sectionTitle">
+          <h2>Note for you</h2>
+        </div>
+        <div class="note">
+          <p><strong>Happy Valentines Day Emma &lt;3</strong><br>
+          You bring so much happiness and joy into my life.<br>
+          You are the kindest and most beautiful person I've ever met and I feel so lucky to have you every time I see you.</p>
+          <p class="sig">Love,<br>Max.</p>
+        </div>
+      </div>
+    </section>
+
+<section id="gallery">
+      <div class="container">
+        <div class="sectionTitle">
+          <h2>Photo gallery</h2>
+</div>
+
+        <div class="masonry" id="masonry">
+          
+          <figure class="shot" data-src="assets/photo_01.jpg" data-cap="Memory #01">
+            <img src="assets/photo_01.jpg" alt="Memory #01" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #01 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_02.jpg" data-cap="Memory #02">
+            <img src="assets/photo_02.jpg" alt="Memory #02" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #02 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_03.jpg" data-cap="Memory #03">
+            <img src="assets/photo_03.jpg" alt="Memory #03" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #03 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_04.jpg" data-cap="Memory #04">
+            <img src="assets/photo_04.jpg" alt="Memory #04" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #04 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_05.jpg" data-cap="Memory #05">
+            <img src="assets/photo_05.jpg" alt="Memory #05" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #05 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_06.jpg" data-cap="Memory #06">
+            <img src="assets/photo_06.jpg" alt="Memory #06" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #06 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_07.jpg" data-cap="Memory #07">
+            <img src="assets/photo_07.jpg" alt="Memory #07" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #07 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_08.jpg" data-cap="Memory #08">
+            <img src="assets/photo_08.jpg" alt="Memory #08" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #08 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_09.jpg" data-cap="Memory #09">
+            <img src="assets/photo_09.jpg" alt="Memory #09" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #09 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_10.jpg" data-cap="Memory #10">
+            <img src="assets/photo_10.jpg" alt="Memory #10" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #10 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_11.jpg" data-cap="Memory #11">
+            <img src="assets/photo_11.jpg" alt="Memory #11" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #11 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_12.jpg" data-cap="Memory #12">
+            <img src="assets/photo_12.jpg" alt="Memory #12" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #12 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_13.jpg" data-cap="Memory #13">
+            <img src="assets/photo_13.jpg" alt="Memory #13" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #13 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_14.jpg" data-cap="Memory #14">
+            <img src="assets/photo_14.jpg" alt="Memory #14" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #14 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_15.jpg" data-cap="Memory #15">
+            <img src="assets/photo_15.jpg" alt="Memory #15" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #15 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_16.jpg" data-cap="Memory #16">
+            <img src="assets/photo_16.jpg" alt="Memory #16" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #16 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_17.jpg" data-cap="Memory #17">
+            <img src="assets/photo_17.jpg" alt="Memory #17" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #17 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_18.jpg" data-cap="Memory #18">
+            <img src="assets/photo_18.jpg" alt="Memory #18" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #18 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_19.jpg" data-cap="Memory #19">
+            <img src="assets/photo_19.jpg" alt="Memory #19" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #19 • click to zoom</figcaption>
+          </figure>
+          
+          <figure class="shot" data-src="assets/photo_20.jpg" data-cap="Memory #20">
+            <img src="assets/photo_20.jpg" alt="Memory #20" loading="lazy">
+            <div class="overlay"></div>
+            <figcaption class="cap">Memory #20 • click to zoom</figcaption>
+          </figure>
+          <figure class="shot" data-src="assets/photo_21.JPG" data-cap="Memory #21">
+            <img src="assets/photo_21.JPG" alt="Memory #21" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_22.JPG" data-cap="Memory #22">
+            <img src="assets/photo_22.JPG" alt="Memory #22" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_23.JPG" data-cap="Memory #23">
+            <img src="assets/photo_23.JPG" alt="Memory #23" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_24.JPG" data-cap="Memory #24">
+            <img src="assets/photo_24.JPG" alt="Memory #24" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_25.JPG" data-cap="Memory #25">
+            <img src="assets/photo_25.JPG" alt="Memory #25" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_26.JPG" data-cap="Memory #26">
+            <img src="assets/photo_26.JPG" alt="Memory #26" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_27.JPG" data-cap="Memory #27">
+            <img src="assets/photo_27.JPG" alt="Memory #27" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_28.JPG" data-cap="Memory #28">
+            <img src="assets/photo_28.JPG" alt="Memory #28" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_29.JPG" data-cap="Memory #29">
+            <img src="assets/photo_29.JPG" alt="Memory #29" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_30.JPG" data-cap="Memory #30">
+            <img src="assets/photo_30.JPG" alt="Memory #30" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_31.JPG" data-cap="Memory #31">
+            <img src="assets/photo_31.JPG" alt="Memory #31" loading="lazy">
+          </figure>
+          <figure class="shot" data-src="assets/photo_32.JPG" data-cap="Memory #32">
+            <img src="assets/photo_32.JPG" alt="Memory #32" loading="lazy">
+          </figure>
+          
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="sectionTitle">
+          <h2>A tiny surprise</h2>
+</div>
+
+        <div class="surprise">
+          <div class="row">
+            <input id="secret" type="text" placeholder='Try: "valentine"' autocomplete="off" />
+            <button class="btn" id="revealBtn" type="button">Reveal 💌</button>
+            <button class="btn secondary" id="sprinkleBtn" type="button">Sprinkle hearts ✨</button>
+          </div>
+          <div class="msg" id="msg">
+            If you’re reading this, you’re officially my favorite human forever.
+            Dinner is on me, kisses are unlimited, and your smile is my entire plan.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightboxInner" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <div class="lbTop">
+          <div id="lbCap">Memory</div>
+          <div class="lbBtns">
+            <button class="iconBtn" id="prevBtn" type="button">←</button>
+            <button class="iconBtn" id="nextBtn" type="button">→</button>
+            <button class="iconBtn" id="closeBtn" type="button">Close ✕</button>
+          </div>
+        </div>
+        <div class="lbImgWrap">
+          <img class="lbImg" id="lbImg" src="" alt="Expanded photo">
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const girlfriendName = "Emma";
+    const yourName = "Max";
+    const secretWord = "valentine";
+    const surpriseMessage = "I LOVE BOBIS!";
+
+    // Apply names (safe)
+    const gf1 = document.getElementById("gfName");
+    const gf2 = document.getElementById("gfName2");
+    const yn  = document.getElementById("yourName");
+    if (gf1) gf1.textContent = girlfriendName;
+    if (gf2) gf2.textContent = girlfriendName;
+    if (yn)  yn.textContent  = yourName;
+// Floating hearts background
+    const hearts = document.getElementById("hearts");
+    const makeHeart = () => {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.setProperty("--left", Math.random() * 100 + "vw");
+      h.style.setProperty("--dur", (7 + Math.random() * 10) + "s");
+      h.style.setProperty("--s", (0.7 + Math.random() * 1.4).toFixed(2));
+      h.style.setProperty("--op", (0.25 + Math.random() * 0.55).toFixed(2));
+      hearts.appendChild(h);
+      setTimeout(() => h.remove(), 19000);
+    };
+    for (let i = 0; i < 18; i++) setTimeout(makeHeart, i * 220);
+
+    // Lightbox gallery
+    const shots = Array.from(document.querySelectorAll(".shot"));
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbCap = document.getElementById("lbCap");
+    let idx = 0;
+
+    function openAt(i) {
+      idx = (i + shots.length) % shots.length;
+      const s = shots[idx];
+      lbImg.src = s.dataset.src;
+      lbCap.textContent = s.dataset.cap || `Memory #${String(idx+1).padStart(2,'0')}`;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+    }
+    function closeLb() {
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+    }
+    function next() { openAt(idx + 1); }
+    function prev() { openAt(idx - 1); }
+
+    shots.forEach((s, i) => s.addEventListener("click", () => openAt(i)));
+    document.getElementById("closeBtn").addEventListener("click", closeLb);
+    document.getElementById("nextBtn").addEventListener("click", next);
+    document.getElementById("prevBtn").addEventListener("click", prev);
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLb();
+    });
+
+    // Keyboard shortcuts
+    window.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() === "p") openAt(0);
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") closeLb();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    // Surprise reveal
+    const input = document.getElementById("secret");
+    const msg = document.getElementById("msg");
+    msg.textContent = surpriseMessage;
+
+    document.getElementById("revealBtn").addEventListener("click", () => {
+      const v = (input.value || "").trim().toLowerCase();
+      if (v === secretWord.toLowerCase()) {
+        msg.classList.add("show");
+        // a little celebratory burst
+        for (let i = 0; i < 18; i++) setTimeout(makeHeart, i * 60);
+      } else {
+        msg.classList.remove("show");
+        input.animate([{transform:"translateX(0)"},{transform:"translateX(-6px)"},{transform:"translateX(6px)"},{transform:"translateX(0)"}], {duration: 260});
+      }
+    });
+
+    document.getElementById("sprinkleBtn").addEventListener("click", () => {
+      for (let i = 0; i < 22; i++) setTimeout(makeHeart, i * 50);
+    });
+  </script>
+</body>
+</html>
